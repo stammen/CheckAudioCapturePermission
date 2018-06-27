@@ -53,11 +53,11 @@ namespace CheckAudioCapturePermission
             {
                 if (enabled)
                 {
-                    permissionText.Text = "Audio Capture permission is denied";
+                    permissionText.Text = "Audio Capture permission is granted";
                 }
                 else
                 {
-                    permissionText.Text = "Audio Capture permission is granted";
+                    permissionText.Text = "Audio Capture permission is denied";
                 }
             });
         }
