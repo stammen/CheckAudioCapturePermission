@@ -29,7 +29,7 @@ namespace CheckAudioCapturePermission
             this.InitializeComponent();
             
             m_deviceAccessInformation = DeviceAccessInformation.CreateFromDeviceClass(DeviceClass.AudioCapture);
-            // The OnAccessChanged event never gets called!
+            // Note: In unpatched RS4 the OnAccessChanged method will never be called. This is fixed in RS5 and an upcoming update to RS4
             m_deviceAccessInformation.AccessChanged += new TypedEventHandler<DeviceAccessInformation, DeviceAccessChangedEventArgs>(OnAccessChanged);
         }
 
@@ -41,8 +41,9 @@ namespace CheckAudioCapturePermission
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            // it appears that m_deviceAccessInformation goes stale. Have to recreate it every time! 
-            m_deviceAccessInformation = DeviceAccessInformation.CreateFromDeviceClass(DeviceClass.AudioCapture);
+            // Note: In unpatched RS4 CurrentStatus is never updated. You will need to recreate DeviceAccessInformation
+            // This is fixed in RS5 and an upcoming update to RS4
+            //m_deviceAccessInformation = DeviceAccessInformation.CreateFromDeviceClass(DeviceClass.AudioCapture);
             var status = m_deviceAccessInformation.CurrentStatus;
             await SetStatus(status == DeviceAccessStatus.Allowed);
         }
