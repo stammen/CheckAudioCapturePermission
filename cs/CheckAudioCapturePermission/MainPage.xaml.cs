@@ -29,7 +29,8 @@ namespace CheckAudioCapturePermission
             this.InitializeComponent();
             
             m_deviceAccessInformation = DeviceAccessInformation.CreateFromDeviceClass(DeviceClass.AudioCapture);
-            // Note: In unpatched RS4 the OnAccessChanged method will never be called. This is fixed in RS5 and an upcoming update to RS4
+            // Note: In unpatched RS4 the OnAccessChanged method will never be called. 
+            // This is fixed in RS5 and an upcoming update to RS4
             m_deviceAccessInformation.AccessChanged += new TypedEventHandler<DeviceAccessInformation, DeviceAccessChangedEventArgs>(OnAccessChanged);
         }
 
